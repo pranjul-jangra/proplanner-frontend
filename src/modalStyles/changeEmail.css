@@ -1,0 +1,208 @@
+.changeEmailModal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+
+    & > div{
+        width: clamp(340px, 95vw, 500px);
+        aspect-ratio: 1/0.8;
+        background: linear-gradient(135deg, #121212cf, #1e1e1ec9);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+        border: 1.5px solid #444;
+        border-radius: 12px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-wrap: balance;
+        position: absolute;
+        gap: 30px;
+        padding: 24px;
+
+        & > h2{
+            color: white;
+            border: none;
+            transform: translateY(24px);
+        }
+    
+        &>p{
+            font-size: 1.1rem;
+        }
+    
+        &>div{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        &>div:first-of-type > input{
+            width: 30%;
+            max-width: 50px;
+            aspect-ratio: 1/1;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            outline: none;
+            border-radius: 10px;
+        }
+        &>button:last-child{
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            cursor: pointer;
+            color: #e0e0e0;
+            outline: none;
+            font-size: 1rem;
+            font-family: sans-serif;
+            transition: all 0.2s ease-in-out;
+            box-sizing: border-box;
+            &:hover{
+                background-color: #bd1c1c;
+            }
+            &:focus{
+                border: 1.5px solid rgb(155, 155, 155);
+            }
+        }
+        &>div:nth-of-type(2){
+            justify-content: space-between;
+            padding-inline: 30px;
+            margin-top: 10px;
+    
+            &>button{
+                all: unset;
+                color: white;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                position: relative;
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -0.6px;
+                    width: 0;
+                    height: 0.5px;
+                    background-color: rgb(202, 202, 202);
+                    transition: all 0.5s;
+                    transform-origin: left;
+                }
+    
+                &:hover{
+                    color: rgb(202, 202, 202);
+                }
+                &:hover::before{
+                    width: 100%;
+                }
+    
+                &:disabled{
+                    color: grey;
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        & > button:first-of-type{
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, background-color 0.2s;
+            &:hover{
+                background-color: #bd1c1c;
+            }
+            &:active{
+                transform: scale(0.9);
+            }
+        }
+    }
+}
+
+.newEmailInputModal{
+    &>input, &>button:last-of-type{
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        border: 1.5px solid #666;
+        border-radius: 8px;
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        outline: none;
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+    &>button:last-of-type{
+        background-color: crimson;
+        filter: brightness(0.9) contrast(1.2);
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        &:hover{
+            background-color: #bd1c1c;
+        }
+    }
+}
+
+
+/* Media queries */
+@media (min-width: 1850px){
+    .changeEmailModal > div{
+        width: clamp(340px, 95vw, 700px);
+        gap: 40px;
+    
+        &>p{
+            font-size: 1.23rem;
+        }
+    
+        &>div{
+            gap: 24px;
+        }
+        &>div:first-of-type > input{
+            width: 40%;
+            max-width: 70px;
+        }
+        &>button:last-child{
+            padding: 17px 0;
+            font-size: 1.3rem;
+            border-radius: 15px;
+        }
+        &>div:nth-of-type(2){
+            padding-inline: 4px;
+    
+            &>button{
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .newEmailInputModal{
+        &>input, &>button:last-of-type{
+            padding: 18px 0;
+            font-size: 1.3rem;
+            border-radius: 15px;
+        }
+    }
+}

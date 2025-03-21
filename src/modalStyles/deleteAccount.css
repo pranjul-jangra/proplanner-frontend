@@ -1,0 +1,103 @@
+.deleteAccountModal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+
+    & > div{
+        position: absolute;
+        padding: 24px;
+        gap: 12px;
+        width: clamp(340px, 95vw, 500px);
+        aspect-ratio: 1/0.8;
+        background: linear-gradient(135deg, #121212cf, #1e1e1ec9);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+        border: 1.5px solid #444;
+        border-radius: 12px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-wrap: balance;
+
+        & > h2{
+            color: white;
+            border: none;
+            transform: translateY(20px);
+        }
+
+        & >div > p{
+            font-size: 1.1rem;
+        }
+
+        & > button:first-of-type{
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, background-color 0.2s;
+            &:hover{
+                background-color: #bd1c1c;
+            }
+            &:active{
+                transform: scale(0.9);
+            }
+        }
+
+        & > button[type='submit']{
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            outline: none;
+            font-size: 1rem;
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            &:hover{
+                background-color: #bd1c1c;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1850px){
+    .deleteAccountModal > div{
+        width: clamp(340px, 95vw, 700px);
+        gap: 22px;
+
+        & >div > p{
+            font-size: 1.23rem;
+        }
+    
+        & > button[type='submit']{
+            padding: 14px 0;
+            font-size: 1.3rem;
+        }
+    }
+}

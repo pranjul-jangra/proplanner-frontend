@@ -1,0 +1,74 @@
+.navigations{
+    background-color: rgb(220, 238, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 40px;
+    padding-inline: 220px;
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    & div{
+        font-size: 1.1rem;
+    }
+
+    &>div:nth-child(1){
+        display: flex;
+        height: 100%;
+        align-items: center;
+        &>div{
+            margin-right: 13px;
+            font-weight: 600;
+        }
+        &>button{
+            all: unset;
+            width: 15px;
+            border: 0.3px solid black;
+            aspect-ratio: 1/1;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+    &>button:last-child{
+        all: unset;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+
+/* Theme based styling */
+.navigations.dark{
+    background-color: rgb(25, 25, 25);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.05), 0 0 1px grey;
+}
+.navigations.pink{
+    background-color: rgb(253, 164, 179);
+    box-shadow: 0 4px 8px rgba(255, 0, 100, 0.2);
+}
+.navigations.lightgreen{
+    background-color: rgb(92, 216, 92);
+    box-shadow: 0 4px 10px rgba(34, 139, 34, 0.2);
+}
+
+/* media queries */
+@media (min-width: 1850px){
+    .navigations{
+        height: 80px;
+        & div{
+            font-size: 1.3rem;
+        }
+        &>div:nth-child(1) > button{
+            width: 22px;
+        }
+        &>div:last-child{
+            cursor: pointer;
+        }
+    }
+}

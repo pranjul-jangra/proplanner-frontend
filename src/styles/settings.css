@@ -1,0 +1,275 @@
+*{
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+}
+
+/* MAIN PAGE STYLING */
+.settingspage {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: 50px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    &>div>div{
+        padding-inline: 20px;
+    }
+}
+*::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+}
+
+.settingspage > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+h2 {
+    color: black;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+h4 {
+    color: rgba(0, 0, 0, 0.801);
+    margin-bottom: 10px;
+}
+
+.userProfile,
+.controlButtons,
+.settings {
+    background-color: rgb(220, 238, 255);
+    border: 2px solid black;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.userProfile >div{
+    font-weight: 600;
+}
+
+.userProfile div,
+.controlButtons button,
+.settings button {
+    margin-bottom: 10px;
+}
+
+/* Button Styling */
+.settingspage button {
+    font-size: 0.9rem;
+    background-color: #70bcff;
+    text-shadow: 0.5px 0.5px black;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.475);
+    &:hover{
+        filter: brightness(0.8) saturate(1.3);
+        transform: scale(0.94);
+    }
+}
+
+.settingspage button:active {
+    transform: scale(1);
+}
+
+.settingspage button.delete {
+    background-color: crimson;
+    filter: brightness(1.2);
+}
+
+.settingspage button.delete:hover {
+    background-color: rgb(198, 18, 54);
+}
+
+.password{
+    width: 100%;
+    position: relative;
+    &>input{
+        position: absolute;
+        all: unset;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        border: 1.5px solid #666;
+        border-radius: 8px;
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        outline: none;
+        font-size: 1rem;
+    }
+    &>input:not(:placeholder-shown):not(:valid){
+        border-color: crimson;
+    }
+    &>div>svg{
+        display: none;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 7;
+        transition: color 0.2s;
+    }
+    &>input:not(:placeholder-shown) + div>svg{
+        display: block;
+    }
+} 
+
+.text-content {
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    & p{
+        margin: 8px 0;
+    }
+}
+
+
+/* Dark Theme */
+.settingspage.dark {
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    color: #e0e0e0;
+    & h2{
+        color: white;
+        border-bottom: 2px solid white;
+    }
+    & h4{
+        color: rgb(220, 220, 220);
+    }
+}
+
+.settingspage.dark .userProfile,
+.settingspage.dark .controlButtons,
+.settingspage.dark .settings {
+    background: rgba(30, 30, 30, 0.9);
+    border: 2px solid black;
+    box-shadow: 2px 6px 12px rgba(255, 255, 255, 0.05), 0 0 1px grey;
+}
+
+.settingspage.dark button {
+    background-color: #989898;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.settingspage.dark button.delete {
+    background-color: rgb(210, 3, 44);
+    filter: brightness(1.2);
+}
+
+
+/* Pink Theme */
+.settingspage.pink {
+    background: linear-gradient(135deg, #fdc0c9, #f8dde2);
+    color: #000000;
+}
+
+.settingspage.pink .userProfile,
+.settingspage.pink .controlButtons,
+.settingspage.pink .settings {
+    background-color: rgb(253, 164, 179);
+    border: 2px solid #fb3d9c;
+    box-shadow: 0 6px 12px rgba(255, 20, 147, 0.2);
+}
+
+.settingspage.pink button {
+    background-color: #ff5471;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.settingspage.pink button.delete {
+    background-color: rgb(210, 3, 44);
+    filter: brightness(1.2);
+}
+
+/* Light Green Theme */
+.settingspage.lightgreen {
+    background: linear-gradient(135deg, #d4f7c5, #b4e197);
+    color: #192718;
+}
+
+.settingspage.lightgreen .userProfile,
+.settingspage.lightgreen .controlButtons,
+.settingspage.lightgreen .settings {
+    background-color: rgb(92, 216, 92);
+    border: 2px solid #4CAF50;
+    box-shadow: 0 4px 10px rgba(34, 139, 34, 0.2);
+}
+
+.settingspage.lightgreen button {
+    background-color: #c5c5c5;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.settingspage.lightgreen button.delete {
+    background-color: rgb(210, 3, 44);
+    filter: brightness(1.2);
+}
+
+
+/* media queries */
+
+@media (max-width: 425px){
+    .settingspage {
+        padding-top: 30px;
+        &>div>div{
+            padding-inline: 6px;
+        }
+    }
+}
+
+@media (min-width: 1850px){
+    .userProfile,
+    .controlButtons,
+    .settings {
+        width: 100%;
+        max-width: 900px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+    
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    .userProfile > div{
+        font-size: 1.3rem;
+    }
+
+    .settingspage button{
+        font-size: 1.1rem;
+        text-shadow: 0.7px 0.5px black;
+    }
+
+    .password{
+        &>input{
+            padding: 13px 0;
+            font-size: 1.3rem;
+        }
+        &>div>svg{
+            width: 32px;
+            height: 32px;
+            right: 10px;
+        }
+    } 
+}

@@ -1,0 +1,125 @@
+.editProfileModal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+
+    & > form{
+        position: relative;
+        background: linear-gradient(135deg, #121212cf, #1e1e1ec9);
+        width: clamp(320px, 95vw, 500px);
+        aspect-ratio: 1/0.8;
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        color: #e0e0e0;
+        border: 1.5px solid #444;
+
+        &  > button:first-of-type{
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, background-color 0.2s;
+            &:hover{
+                background-color: #bd1c1c;
+            }
+            &:active{
+                transform: scale(0.9);
+            }
+        }
+
+        & > h2{
+            color: white;
+            border: none;
+            transform: translateY(10px);
+        }
+
+        & > p{
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        
+        & > input,
+        & > select,
+        & > button[type='submit'] {
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            outline: none;
+            font-size: 1rem;
+            font-family: sans-serif;
+            border: 1.5px solid #666;
+        }
+
+        & > input:not(:placeholder-shown):not(:valid){
+            border-color: crimson;
+        }
+
+        & > button[type='submit'] {
+            background-color: crimson;
+            filter: brightness(0.9) contrast(1.2);
+            cursor: pointer;
+            border: none;
+            margin-top: 12px;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background-color: #bd1c1c;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1850px){
+    .editProfileModal > form{
+        width: clamp(320px, 95vw, 700px);
+        gap: 17px;
+
+        & > button:first-of-type{
+            right: 20px;
+            width: 49px;
+            height: 49px;
+        }
+
+        & > p{
+            margin-bottom: 12px;
+            font-size: 1.23rem;
+        }
+
+        & > input,
+        & > select,
+        & > button[type='submit']{
+            padding: 14px 0;
+            font-size: 1.2rem;
+        }
+    }
+}

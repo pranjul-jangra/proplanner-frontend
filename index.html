@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="/proPlanner-icon.png" />
+    <title>ProPlanner - Organize, Track & Complete Your Tasks</title>
+
+    <meta name="description" content="ProPlanner is a powerful task management app that helps you organize, track, and complete your tasks effortlessly. Stay productive with deadline tracking, reminders, and collaboration features." />
+    <meta name="keywords" content="task manager, productivity app, project management, todo list, ProPlanner" />
+    <meta name="author" content="Pranjul" />
+
+    <meta property="og:title" content="ProPlanner - Manage Your Tasks Efficiently" />
+    <meta property="og:description" content="Stay on top of your tasks with ProPlanner. Set deadlines, track progress, and boost productivity!" />
+    <meta property="og:image" content="/proPlanner-icon.png" />
+    <!-- <meta property="og:url" content="https://proplanner.app" /> -->
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />   <!--  Small image with text preview -->
+    <meta name="twitter:title" content="ProPlanner - Task Management Made Easy" />
+    <meta name="twitter:description" content="Organize and manage your tasks seamlessly with ProPlanner." />
+    <meta name="twitter:image" content="/proPlanner-icon.png" />
+
+    <link rel="modulepreload" href="/src/main.jsx" as="script" />
+    <!-- Preconnect to API server -->
+    <link rel="preconnect" href="%VITE_API_URL%" crossorigin>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ProPlanner",
+        "description": "ProPlanner is a modern task management app that helps you stay productive with deadline tracking and collaboration tools.",
+
+        <!-- "url": "https://proplanner.app", -->
+
+        "applicationCategory": "Productivity",
+        "operatingSystem": "All",
+        "author": {
+          "@type": "Individual",
+          "name": "Pranjul"
+        }
+      }
+    </script>
+
+  </head>
+
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+
+</html>

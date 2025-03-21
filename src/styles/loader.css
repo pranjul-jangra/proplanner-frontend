@@ -1,0 +1,47 @@
+.loader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.473);
+    z-index: 100;
+    display: none;
+}
+.loader.active{
+    display: block;
+}
+.loader>div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+.loader>div:first-child{
+    border-top: 5px solid red;
+    width: 65px;
+    aspect-ratio: 1/1;
+    animation: clockwise-rotation linear infinite 2s;
+}
+.loader>div:nth-child(2){
+    border-bottom: 5px solid yellow;
+    width: 85px;
+    aspect-ratio: 1/1;
+    animation: anticlockwise-rotation linear infinite 3s;
+}
+.loader>div:last-child{
+    border-right: 5px solid blue;
+    width: 105px;
+    aspect-ratio: 1/1;
+    animation: clockwise-rotation linear infinite 2s;
+}
+
+@keyframes clockwise-rotation {
+    to{
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@keyframes anticlockwise-rotation {
+    to{
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}

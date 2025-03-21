@@ -1,0 +1,96 @@
+.logoutModal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+
+    & > div{
+        width: clamp(340px, 95vw, 500px);
+        aspect-ratio: 1/0.8;
+        background: linear-gradient(135deg, #121212cf, #1e1e1ec9);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+        border: 1.5px solid #444;
+        border-radius: 12px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-wrap: balance;
+        padding: 24px;
+
+        & > h2{
+            color: white;
+            border: none;
+        }
+
+        & > p{
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.1rem;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+        }
+        & > p:nth-of-type(2){
+            font-size: 1rem;
+        }
+    
+        & > div{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+
+            & > button{
+                all: unset;
+                padding: 8px 18px;
+                border-radius: 12px;
+                font-weight: 600;
+                color: black;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+            & > button:nth-of-type(1){
+                background-color: #d71334;
+            }
+            & > button:nth-of-type(2){
+                background-color: cyan;
+            }
+            & > button:hover{
+                scale: 1.1;
+                filter: brightness(0.7);
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1850px){
+    .logoutModal > div{
+        width: clamp(340px, 95vw, 700px);
+
+        & > p{
+            margin-bottom: 24px;
+            font-size: 1.23rem;
+            line-height: 1.3rem;
+        }
+        & > p:nth-of-type(2){
+            font-size: 1.19rem;
+        }
+    
+        & > div > button{
+            padding: 11px 22px;
+            font-size: 1.3rem;
+        }
+    }
+}

@@ -1,0 +1,173 @@
+.tasks{
+    background-color: rgb(220, 238, 255);
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    margin-bottom: 7px;
+    box-shadow: 0 0 4px black, 0 0 2px black;
+    padding: 10px;
+    border-radius: 10px;
+    user-select: none;
+    overflow: hidden;
+    word-wrap: break-word;
+    position: relative;
+    &>div:nth-child(1){
+        &>h4{
+            padding-bottom: 7px;
+            border-bottom: 1.5px solid black;
+        }
+        width: 100%;
+        &>div:nth-child(2){
+            padding-block: 5px;
+            font-size: 0.8rem;
+            &>p{ 
+                margin-bottom: 3px;
+            }
+        }
+        &>div:nth-child(3){
+            display: flex;
+            gap: 5px;
+        }
+    }
+}
+.tasks:hover{
+    transform: scale(1.01);
+}
+
+.tasks button{
+    all: unset;
+    color: black;
+    padding: 3px 7px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.475);
+    text-shadow: 0.5px 0px grey;
+    background-color: #70bcff;
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+    &:hover{
+        transform: scale(0.94);
+    }
+}
+.tasks button:nth-of-type(2){
+    background-color: rgb(238, 19, 63);
+}
+.tasks button:active{
+    transform: scale(1);
+}
+
+/* Conditional styling */
+.tasks.expiredTask{
+    background-color: rgba(238, 19, 63, 0.758);
+    color: black;
+    text-shadow: 0.2px 0.2px black;
+    filter: brightness(1.5);
+    & button{
+        filter: brightness(1);
+    }
+    & button:nth-child(2){
+        filter: brightness(1);
+    }
+    & button:last-child{
+        display: none;
+    }
+}
+.expireTag{
+    position: absolute;
+    font-size: 0.8rem;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 0, 0.653);
+    color: black;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 3px 6px;
+    border-radius: 70px;
+    box-shadow: 0 0 10px 0.01px grey;
+}
+
+
+/* Theme based styling */
+.tasks.dark{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0 0 2px grey;
+    background-color: rgb(25, 25, 25);
+
+    &>div:nth-child(1) > h4{
+        color: white;
+        border-bottom: 1.5px solid grey;
+    }
+    & button{
+        background-color: rgb(182, 182, 182);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    & button:nth-of-type(2){
+        background-color: rgb(210, 3, 44);
+        filter: brightness(1.2);
+    }
+}
+.tasks.dark.expiredTask{
+    background-color: rgba(238, 19, 63, 0.758);
+    color: black;
+    text-shadow: 0.2px 0.2px black;
+    filter: brightness(1.4);
+
+    &>div:nth-child(1) > h4{
+        color: black;
+        border-bottom: 1.5px solid black;
+    }
+    & button{
+        filter: brightness(1);
+    }
+    & button:nth-child(2){
+        filter: brightness(1);
+    }
+}
+
+.tasks.pink{
+    box-shadow: 0 0 4px black, 0 0 2px red;
+    background-color: rgb(253, 164, 179);
+    & button{
+        background-color: rgb(255, 85, 114);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    & button:nth-of-type(2){
+        background-color: rgb(210, 3, 44);
+        filter: brightness(1.2);
+    }
+}
+.tasks.pink.expiredTask{
+    background-color: rgba(238, 19, 63, 0.758);
+    color: black;
+    text-shadow: 0.2px 0.2px black;
+    filter: brightness(1.5);
+    & button{
+        filter: brightness(1);
+    }
+    & button:nth-child(2){
+        filter: brightness(1);
+    }
+}
+
+.tasks.lightgreen{
+    box-shadow: 0 0 4px black, 0 0 2px green;
+    background-color: rgb(92, 216, 92);
+    & button{
+        background-color: #c5c5c5;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    & button:nth-of-type(2){
+        background-color: rgb(210, 3, 44);
+        filter: brightness(1.2);
+    }
+}
+.tasks.lightgreen.expiredTask{
+    background-color: rgba(238, 19, 63, 0.758);
+    color: black;
+    text-shadow: 0.2px 0.2px black;
+    filter: brightness(1.5);
+    & button{
+        filter: brightness(1);
+    }
+    & button:nth-child(2){
+        filter: brightness(1);
+    }
+}

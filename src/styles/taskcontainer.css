@@ -1,0 +1,247 @@
+.taskcontainer{
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: rgba(237, 246, 247, 0.434);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.visible{
+    display: block;
+}
+.hide{
+    display: none;
+}
+
+.taskcontainer>div:first-of-type{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px 10px 15px 10px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom: 1.4px solid black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 3;
+    gap: 4px;
+    background-color: rgb(220, 238, 255);
+    &>div:first-of-type{
+        margin-right: auto;
+        display: flex;
+        gap: 10px;
+        &>button{
+            all: unset;
+            background-color: aqua;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 1px solid black;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.475);
+        }
+        &>button:nth-child(2){
+            background-color: greenyellow;
+        }
+    }
+    &>div:nth-child(2){
+        background-color: white;
+        padding: 9px 13px;
+        border-radius: 10px;
+        border: 1px solid black;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.475);
+    }
+}
+
+.taskcontainer>div:nth-child(2){
+    padding: 0 10px 10px 10px ;
+}
+
+.detailModalBox{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.582);
+}
+
+.detailModalBox > div{
+    position: absolute;
+    width: clamp(300px, 90vw, 600px);
+    height: clamp(380px, 70vh, 800px);
+    background: linear-gradient(135deg, #121212cf, #1e1e1ec9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+    padding: 24px;
+    color: #e0e0e0;
+    border: 1.5px solid #444;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    &>div{
+        width: 100%;
+    }
+}
+.detailModalBox > div::-webkit-scrollbar {
+    display: none;
+}
+
+.detailModalBox button:nth-of-type(1){
+    all: unset;
+    color: white;
+    padding: 8px 16px;
+    background-color: crimson;
+    position: sticky;
+    top: 3px;
+    right: 3px;
+    align-self: end;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.15s;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, background-color 0.2s;
+    &:hover{
+        background-color: #ff4d4d;
+        transform: scale(1.1);
+    }
+    &:active{
+        transform: scale(0.9);
+    }
+}
+
+.detailModalBox > div >div:nth-of-type(1){
+    margin-bottom: 20px;
+    margin-top: 10px;
+    line-height: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+.detailModalBox > div > div:nth-child(n + 3){
+    color: #bbbbbb;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+.detailModalBox > div > div:last-child{
+    margin-bottom: 40px;
+} 
+
+/* Theme based styling */
+.taskcontainer.dark{
+    background: rgba(30, 30, 30, 0.9);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.05), 0 0 1px grey;
+    color: white;
+    &>div:first-of-type{
+        background-color: rgb(25, 25, 25);
+        border-bottom: 1.4px solid rgb(150, 150, 150);
+        color: black;
+        &>div:first-of-type>button{
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        &>div:nth-child(2){
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.taskcontainer.pink{
+    background-color: rgb(254, 206, 214);
+    box-shadow: 0 6px 12px rgba(255, 20, 147, 0.2);
+    color: black;
+    &>div:first-of-type{
+        background-color: rgb(253, 164, 179);
+        &>div:first-of-type>button{
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        &>div:nth-child(2){
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.taskcontainer.lightgreen{
+    background-color: rgba(131, 223, 131, 0.589);
+    box-shadow: 0 4px 10px rgba(34, 139, 34, 0.2);
+    color: black;
+    &>div:first-of-type{
+        background-color: rgb(92, 216, 92);
+        &>div:first-of-type>button{
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        &>div:nth-child(2){
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+
+/* media queries */
+@media (max-width: 1440px){
+    .taskcontainer{
+        height: 500px;
+    }
+}
+
+@media (max-width: 488px){
+    .taskcontainer>div:first-of-type{
+        padding: 8px 10px 8px 10px;
+        flex-direction: column;
+        align-items: start;
+        
+        &>div:first-of-type{
+            &>button{
+                padding: 5px 10px;
+            }
+        }
+        &>div:nth-child(2){
+            padding: 6px 11px;
+        }
+    }
+}
+
+@media (min-width: 1850px){
+    .taskcontainer{
+        height: 700px;
+    }
+    .detailModalBox > div{
+        width: clamp(300px, 90vw, 800px);
+        height: clamp(380px, 90vh, 800px);
+        font-size: 1.3rem;
+    }
+    .detailModalBox > div >div:nth-of-type(1){
+        margin-bottom: 30px;
+        font-size: 1.3rem;
+    }
+    .detailModalBox > div > div:nth-child(n + 3){
+        font-size: 1.04rem;
+        line-height: 1.6rem;
+    }
+}

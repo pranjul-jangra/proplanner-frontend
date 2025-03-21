@@ -1,0 +1,8 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    &::selection{
+        background-color: #464647;
+        color: rgb(97, 194, 255);
+    }
+}

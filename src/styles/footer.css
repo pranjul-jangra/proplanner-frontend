@@ -1,0 +1,285 @@
+.footer {
+    width: 100vw;
+    background-color: #0d0d2b;
+    color: #ffffff;
+    padding: 40px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    & > section > form{
+        width: 60%;
+
+        & > h2{
+            color: #85c6ff;
+            border-bottom: 2px solid #85c6ff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+    
+        & > h4{
+            color: #85c6ff;
+            margin-bottom: 10px;
+        }
+
+        & > p{
+            margin-bottom: 10px;
+        }
+    }
+
+
+    & input, textarea, select{
+        width: 100%;
+        background-color: #ffffff;
+        color: #0d0d2b;
+        border: 2px solid #85c6ff;
+        border-radius: 8px;
+        padding: 10px 15px;
+        outline: none;
+        transition: border 0.3s ease;
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
+
+    & textarea{
+        resize: none;
+        min-height: 100px;
+    }
+
+    & input:focus, textarea:focus, select:focus{
+        border-color: #85c6ff;
+        box-shadow: 0 0 8px #9bd0ff;
+    }
+
+    & button{
+        color: black;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:active{
+            transform: scale(0.95);
+        }
+    }
+}
+
+.ContactTags{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 23px;
+    height: clamp(100px, 90vh, 120px);
+    gap: 10%;
+    
+    &>a{
+        position: relative;
+        width: 50px;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 0 5px 1px #05051c;
+        
+        &>svg{
+            width: 80%;
+            aspect-ratio: 1/1;
+            fill: white;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    &>a:nth-child(1)>svg{ width: 65%; aspect-ratio: 1/1;}
+    &>a:nth-child(3)>svg{ width: 55%; aspect-ratio: 1/1;}
+    &>a:nth-child(4)>svg{ width: 65%; aspect-ratio: 1/1;}
+    
+    &>a:nth-child(2n){
+        transform: translateY(-30px);
+    }
+
+    &>a:nth-child(2n):hover{
+        transform: scale(1.2) translateY(-23.2px);
+        border: 1px solid cyan;
+        box-shadow: 0 0 8px 2px #85c6ffda;
+        background-color: #02032881;
+        outline: 1px solid cyan;
+        outline-offset: -2px;
+    }
+    &>a:nth-child(2n + 1):hover{
+        transform: scale(1.2) translateY(3px);
+        border: 1px solid cyan;
+        box-shadow: 0 0 8px 2px #85c6ffda;
+        background-color: #02032881;
+        outline: 1px solid cyan;
+        outline-offset: -2px;
+    }
+}
+
+.contact-links{
+    width: 60%;
+    & > h2{
+        color: #85c6ff;
+        border-bottom: 2px solid #85c6ff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+}
+
+
+
+/* THEME BASED STYLING */
+
+/* Dark Theme */
+.footer.dark {
+    background-color: #0f0f0f;
+    & h2{
+        color: #d3d3d3;
+        border-bottom: 2px solid #d3d3d3;
+    }
+    & input,textarea, select{
+        border: 2px solid #d3d3d3;
+    }
+    & input:focus, textarea:focus, select:focus{
+        border-color: #d3d3d3;
+        box-shadow: 0 0 8px 2px #a1a1a1;
+    }
+
+    & > nav > .ContactTags > a{
+        box-shadow: 0 0 5px 1px #1e1e21; 
+    }
+
+    & > nav > .ContactTags > a:hover{
+        border: 1px solid #3e3e3e;
+        box-shadow: 0 0 8px 2px #a1a1a1;
+        background-color: #0e0e0e;
+        outline: 1px solid #464646;
+    }
+}
+
+/* Pink Theme */
+.footer.pink {
+    & h2{
+        color: #ff4463;
+        border-bottom: 2px solid #ff4463;
+    }
+    & h4, &>div div{
+        color: #ff4463;
+    }
+    & input,textarea, select{
+        border: 2px solid #ff4463;
+    }
+    & input:focus, textarea:focus, select:focus{
+        border-color: #ff4463;
+        box-shadow: 0 0 8px 2px #ff7b91;
+    }
+
+    & > nav > .ContactTags > a:hover{
+        border: 1px solid #ff3f5f;
+        box-shadow: 0 0 8px 2px #ff7b91;
+        outline: 1px solid #ff3f5f;
+    }
+}
+
+/* Light Green Theme */
+.footer.lightgreen {
+    & h2{
+        color: #4CAF50;
+        border-bottom: 2px solid #4CAF50;
+    }
+    & h4, &>div div{
+        color: #4CAF50;
+    }
+    & input,textarea, select{
+        border: 2px solid #4CAF50;
+    }
+    & input:focus, textarea:focus, select:focus{
+        border-color: #4CAF50;
+        box-shadow: 0 0 8px 2px #319d35;
+    }
+    & button{
+        background-color: #4CAF50;
+    }
+
+    & > nav > .ContactTags > a:hover{
+        border: 1px solid #07600a;
+        box-shadow: 0 0 8px 2px #319d35;
+        outline: 1px solid #07600a;
+    }
+}
+
+
+/* media queries */
+@media (max-width: 1024px){
+    .footer > section > form {
+        width: 78%;
+    }
+
+    .contact-links{
+        width: 78%;
+    }
+}
+
+@media (max-width: 820px){
+    .footer > section > form {
+        width: 100%;
+    }
+
+    .contact-links{
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px){
+    .footer{
+        padding: 40px 6px 0 6px;
+    }
+}
+
+
+@media (min-width: 1850px){
+    .footer > section > form {
+        width: 80%;
+
+        & > p{
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+
+        & > input,
+        & > textarea, 
+        & > select{
+            font-size: 1.2rem;
+        }
+
+        & > textarea{
+            min-height: 140px;
+        }
+
+        & > button{
+            padding: 20px 20px;
+        }
+    }
+
+    .contact-links{
+        width: 80%;
+    }
+    
+    .ContactTags{
+        height: clamp(100px, 90vh, 190px);
+        
+        & > a{
+            width: 70px;
+        }
+    }
+}
