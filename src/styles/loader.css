@@ -3,7 +3,7 @@
     height: 100vh;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.473);
-    z-index: 100;
+    z-index: 103;
     display: none;
 }
 .loader.active{
