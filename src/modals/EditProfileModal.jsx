@@ -4,6 +4,7 @@ import apiClient from '../axiosClient/apiClient';
 import '../modalStyles/editProfile.css'
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { ModalsContext } from '../contexts/ModalsContextProvider';
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 
 
@@ -11,6 +12,7 @@ export default function EditProfileModal({fetchUser, dataToEdit, handleChange}) 
 
     const { notifyUser } = useContext(NotifyContext);
     const {modals, setModals} = useContext(ModalsContext);
+    const {setIsLoaderActive} = useContext(LoaderContext);
 
 
     async function handleUpdateProfile(e){
@@ -23,6 +25,7 @@ export default function EditProfileModal({fetchUser, dataToEdit, handleChange}) 
         setModals({...modals, updateProfileModal: false});
         
         try{
+          setIsLoaderActive(true);
           const response = await apiClient.patch(`/home/settings/update-profile`, {user, dataToEdit});
     
           if(response.status === 200) {
@@ -38,6 +41,8 @@ export default function EditProfileModal({fetchUser, dataToEdit, handleChange}) 
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "An error occurred"
           );
+        }finally{
+          setIsLoaderActive(false)
         }
     }
 

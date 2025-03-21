@@ -5,10 +5,12 @@ import '../modalStyles/changeEmail.css'
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { ModalsContext } from '../contexts/ModalsContextProvider';
 import { OtpGenerationContext } from '../contexts/OtpGenerationContextProvider';
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 
 export default function ChangeEmailModal({userProfile, fetchUser}) {
 
+    const {setIsLoaderActive} = useContext(LoaderContext);
     const { notifyUser } = useContext(NotifyContext);
     const {modals, setModals} = useContext(ModalsContext);
     const { handleGenerateOtp, isResending, isOtpVerified, setIsOtpVerified, countDown, setCountdown, isRunning, setIsRunning, verificationCodes, setVerificationCodes } = useContext(OtpGenerationContext);
@@ -70,6 +72,7 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
         }
         
         try {
+          setIsLoaderActive(true);
           const response = await apiClient.post(`/home/settings/verify-otp`, {
             email: userProfile.email,
             otp: otpValue
@@ -97,6 +100,8 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
               : JSON.stringify(error.response?.data?.error) || "Invalid OTP. Please try again."
           );
           setVerificationCodes({ first: '', second: '', third: '', fourth: '', fifth: '', sixth: '' });
+        } finally{
+          setIsLoaderActive(false);
         }
     }
 
@@ -104,6 +109,7 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
     // CHANGE THE EMAIL
     async function handleEmailChange(){
         try{
+          setIsLoaderActive(true);
           const response = await apiClient.patch(`/home/settings/update-email`, {currentEmail: userProfile.email, newEmail});
     
           if(response.status === 200){
@@ -132,6 +138,8 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "Failed to update email. Please try again"
           );
+        }{
+          setIsLoaderActive(false);
         }
     }
 

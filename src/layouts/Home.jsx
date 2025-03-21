@@ -7,6 +7,7 @@ import { ModalContext } from '../contexts/ModalContextProvider';
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { EditDetailContext } from '../contexts/EditDetailContextProvider';
 import '../styles/home.css'
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 const Navigations = lazy(()=> import('../components/Navigations'));
 const Taskcontainer = lazy(()=> import('./Taskcontainer'));
@@ -23,6 +24,7 @@ export default function Home() {
   const {setIsModalOpen} = useContext(ModalContext);
   const {notifyUser} = useContext(NotifyContext);
   const {setEditDetails} = useContext(EditDetailContext);
+  const {setIsLoaderActive} = useContext(LoaderContext);
 
   const [isDragging, setIsDragging] = useState(false);
   const [dailyTasks, setDailyTasks] = useState([]);
@@ -43,6 +45,8 @@ export default function Home() {
       return navigate('/');
     }
 
+    setIsLoaderActive(true);
+
     apiClient.get(`/home/data`, {
         headers: { Authorization: `Bearer ${token}` },
         params: { user },
@@ -52,8 +56,10 @@ export default function Home() {
         setDailyTasks(sortedTasks.filter((t) => t.countdownPeriod === 'daily'));
         setWeeklyTasks(sortedTasks.filter((t) => t.countdownPeriod === 'weekly'));
         setNotes(sortedTasks.filter((t)=> t.countdownPeriod === 'noExpiry'));
+        setIsLoaderActive(false);
       })
       .catch((error) => {
+        setIsLoaderActive(false);
         if (error.response?.status === 403) {
           navigate('/');
         }

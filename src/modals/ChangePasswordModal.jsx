@@ -4,12 +4,14 @@ import apiClient from '../axiosClient/apiClient';
 import '../modalStyles/changePassword.css'
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { ModalsContext } from '../contexts/ModalsContextProvider';
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 
 export default function ChangePasswordModal() {
 
     const { notifyUser } = useContext(NotifyContext);
     const {modals, setModals} = useContext(ModalsContext);
+    const {setIsLoaderActive} = useContext(LoaderContext);
 
     const cpNewRef = useRef();
     const cpConfirmRef = useRef();
@@ -46,6 +48,7 @@ export default function ChangePasswordModal() {
     async function handleChangePassword(e){
       e.preventDefault();
       try{
+        setIsLoaderActive(true);
         const user = localStorage.getItem('proPlannerUsername');
         const response = await apiClient.patch(`/home/settings/update-password`, { user, passwords });
 
@@ -61,6 +64,8 @@ export default function ChangePasswordModal() {
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "Failed to change password. Please try again"
         );
+      }finally{
+        setIsLoaderActive(false);
       }
     }
 

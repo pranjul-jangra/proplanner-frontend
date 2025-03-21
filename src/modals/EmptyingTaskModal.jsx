@@ -4,11 +4,13 @@ import { ModalsContext } from '../contexts/ModalsContextProvider';
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import apiClient from '../axiosClient/apiClient';
 import '../modalStyles/emptyingTask.css'
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 export default function EmptyingTaskModal({containerToEmpty}) {
 
     const {modals, setModals} = useContext(ModalsContext);
     const { notifyUser } = useContext(NotifyContext);
+    const {setIsLoaderActive} = useContext(LoaderContext);
 
 
     async function handleEmptyingTasks(){
@@ -17,6 +19,7 @@ export default function EmptyingTaskModal({containerToEmpty}) {
         if(!containerToEmpty) return notifyUser('Select the tasks to empty');
     
         try{
+          setIsLoaderActive(true);
           const response = await apiClient.delete(`/home/settings/empty-tasks`, { params: {user, containerToEmpty} })
           if(response.status === 200) return notifyUser(response.data.message);
     
@@ -26,6 +29,8 @@ export default function EmptyingTaskModal({containerToEmpty}) {
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "Unable to delete tasks/notes. Please try again later"
           );
+        }finally{
+          setIsLoaderActive(false)
         }
     }
 

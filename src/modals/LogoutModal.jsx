@@ -5,16 +5,19 @@ import apiClient from '../axiosClient/apiClient';
 import '../modalStyles/logoutModal.css'
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { ModalsContext } from '../contexts/ModalsContextProvider';
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 export default function LogoutModal() {
     const navigate = useNavigate();
 
     const { notifyUser } = useContext(NotifyContext);
     const {modals, setModals} = useContext(ModalsContext);
+    const {setIsLoaderActive} = useContext(LoaderContext);
 
 
     async function handleLogout(){
       try{
+        setIsLoaderActive(true);
         const response = await apiClient.post(`/home/settings/logout`);
 
         if(response.status === 200){
@@ -30,6 +33,8 @@ export default function LogoutModal() {
             ? error.response.data.error
             : JSON.stringify(error.response?.data?.error) || "Failed to logout. Please try again later"
         );
+      }finally{
+        setIsLoaderActive(false);
       }
     }
 

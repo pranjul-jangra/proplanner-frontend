@@ -5,6 +5,7 @@ import apiClient from '../axiosClient/apiClient';
 import '../modalStyles/deleteAccount.css'
 import { NotifyContext } from '../contexts/NotifyContextProvider';
 import { ModalsContext } from '../contexts/ModalsContextProvider';
+import { LoaderContext } from '../contexts/LoaderContextProvider';
 
 
 export default function DeleteAccountModal() {
@@ -14,6 +15,7 @@ export default function DeleteAccountModal() {
 
     const { notifyUser } = useContext(NotifyContext);
     const {modals, setModals} = useContext(ModalsContext);
+    const {setIsLoaderActive} = useContext(LoaderContext);
 
     const [passwordSvg, setpasswordSvg] = useState({openingEye: true, closingEye:false});
 
@@ -28,6 +30,7 @@ export default function DeleteAccountModal() {
 
       
       try{
+        setIsLoaderActive(true);
         const response = await apiClient.delete(`/home/settings/delete-account`, {
           params: { username, password }
         })
@@ -45,6 +48,8 @@ export default function DeleteAccountModal() {
             ? error.response.data.error
             : JSON.stringify(error.response?.data?.error) || "Error Deleting Account. Please try again later"
         );
+      }finally{
+        setIsLoaderActive(false);
       }
     }
 
