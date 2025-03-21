@@ -21,7 +21,11 @@ export default function EmptyingTaskModal({containerToEmpty}) {
           if(response.status === 200) return notifyUser(response.data.message);
     
         }catch(error){
-          notifyUser(error.response?.data?.error || 'Unable to delete tasks/notes. Please try again later')
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "Unable to delete tasks/notes. Please try again later"
+          );
         }
     }
 

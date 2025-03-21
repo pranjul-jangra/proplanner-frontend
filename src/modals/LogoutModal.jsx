@@ -25,7 +25,11 @@ export default function LogoutModal() {
         }
 
       }catch(error){
-        notifyUser(error.response?.data.error || "Failed to logout. Please try again later.")
+        notifyUser(
+          typeof error.response?.data?.error === "string"
+            ? error.response.data.error
+            : JSON.stringify(error.response?.data?.error) || "Failed to logout. Please try again later"
+        );
       }
     }
 

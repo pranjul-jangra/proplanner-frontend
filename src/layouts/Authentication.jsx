@@ -80,7 +80,11 @@ export default function Authentication() {
             navigate('/home');
             
         } catch (error) {
-            notifyUser(error.response?.data?.error || "An error occurred");
+            notifyUser(
+                typeof error.response?.data?.error === "string"
+                  ? error.response.data.error
+                  : JSON.stringify(error.response?.data?.error) || "An error occurred"
+              );
         }
         setIsLoaderActive(false);
     };

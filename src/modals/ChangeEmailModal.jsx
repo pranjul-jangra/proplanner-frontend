@@ -91,7 +91,11 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
             
           }
         } catch (error) {
-          notifyUser(error.response?.data?.error || "Invalid OTP. Please try again.");
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "Invalid OTP. Please try again."
+          );
           setVerificationCodes({ first: '', second: '', third: '', fourth: '', fifth: '', sixth: '' });
         }
     }
@@ -108,7 +112,11 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
             setCountdown(90);
             setIsRunning(false);
     
-            notifyUser( response.data.message || "Email updated successfully" );
+            notifyUser(
+              typeof error.response?.data?.error === "string"
+                ? error.response.data.error
+                : JSON.stringify(error.response?.data?.error) || "Email updated successfully"
+            );
             setModals({...modals, changeEmailModal: false});
     
             if(otpVerificationTimeoutRef.current){
@@ -119,7 +127,11 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
           }
     
         }catch(error){
-          notifyUser( error.response?.data?.error || "Failed to update email. Please try again.");
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "Failed to update email. Please try again"
+          );
         }
     }
 

@@ -43,7 +43,11 @@ export default function ResetPassword() {
           }
             
         } catch (error) {
-          notifyUser(error.response?.data?.error || "Something went wrong");
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "An error occurred"
+          );
 
         }finally {
           setIsLoaderActive(false);

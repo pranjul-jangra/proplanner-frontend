@@ -56,7 +56,11 @@ export default function ChangePasswordModal() {
         }
 
       }catch(error){
-        notifyUser( error.response?.data?.error || "Failed to change password. Please try again")
+        notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "Failed to change password. Please try again"
+        );
       }
     }
 

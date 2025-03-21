@@ -40,7 +40,11 @@ export default function DeleteAccountModal() {
         }
 
       }catch(error){
-        notifyUser(error.response.data.error || "Error Deleting Account. Please try again later.");
+        notifyUser(
+          typeof error.response?.data?.error === "string"
+            ? error.response.data.error
+            : JSON.stringify(error.response?.data?.error) || "Error Deleting Account. Please try again later"
+        );
       }
     }
 

@@ -51,7 +51,11 @@ export default function OtpGenerationContextProvider({children}) {
           setCountdown(0);
           setIsRunning(false);
           
-          notifyUser(error.response?.data?.error || "Failed to generate OTP");
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "An error occurred"
+          );
     
         }finally {
           setIsResending(false);

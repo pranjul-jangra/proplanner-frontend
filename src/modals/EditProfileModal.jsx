@@ -33,7 +33,11 @@ export default function EditProfileModal({fetchUser, dataToEdit, handleChange}) 
           }
     
         }catch(error){
-          notifyUser(error.response.data.error || 'An error occurred')
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "An error occurred"
+          );
         }
     }
 

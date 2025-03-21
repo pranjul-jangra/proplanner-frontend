@@ -30,7 +30,11 @@ export default function ForgotPasswordModal() {
           }
     
         }catch(error){
-          notifyUser(error.response?.data?.error || "Your request can't be completed. Please try again later.");
+          notifyUser(
+            typeof error.response?.data?.error === "string"
+              ? error.response.data.error
+              : JSON.stringify(error.response?.data?.error) || "Your request can't be completed. Please try again later"
+          );
     
         }finally{
           setIsLoaderActive(false);
