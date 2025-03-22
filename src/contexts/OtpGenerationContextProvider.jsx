@@ -16,38 +16,34 @@ export default function OtpGenerationContextProvider({children}) {
     async function handleGenerateOtp(forceOtpGeneration = false, userProfile, notifyUser){
         if (isResending || !userProfile?.email) return;
         if (isOtpVerified)  return;
+
+        const otpGeneratedTime = parseInt(localStorage.getItem('otpGeneratedTime')) || 0;
+        const expiryTime = otpGeneratedTime + 15 * 60 * 1000;
+        const otpIsStillValid = expiryTime > Date.now();
+        
+        if (otpIsStillValid && !forceOtpGeneration) {
+          const cooldownTime = otpGeneratedTime + 90 * 1000;
+          const remainingSeconds = Math.ceil((cooldownTime - Date.now()) / 1000);
+          setCountdown(remainingSeconds);
+          setIsRunning(true);
+          return notifyUser('Please enter the otp sent to your email');
+        }
     
         setIsResending(true);
-    
         setVerificationCodes({ first: '', second: '', third: '', fourth: '', fifth: '', sixth: '' })
     
         try{
-          const response = await apiClient.post(`/home/settings/generate-otp`, { email: userProfile.email, forceOtpGeneration: forceOtpGeneration });
+          const response = await apiClient.post(`/home/settings/generate-otp`, { email: userProfile.email });
           
           if (response.status === 200) {
             setCountdown(90);
             setIsRunning(true);
+            const otpGeneratedTime = Date.now();
+            localStorage.setItem('otpGeneratedTime', otpGeneratedTime);
             notifyUser("OTP sent to your email");
           }
     
         }catch(error){
-          console.log("OTP generation error:", error.response?.data);
-    
-          // If we receive a 429 error (too many requests)
-          if (error.response?.status === 429 && error.response?.data?.resendCountdown) {
-            const serverTime = parseInt(error.response.data.resendCountdown);
-            const currentTime = Date.now();
-            const remainingTime = Math.max(0, Math.floor((serverTime - currentTime) / 1000));
-            
-            console.log("Server time:", serverTime);
-            console.log("Current time:", currentTime);
-            console.log("Remaining time:", remainingTime);
-            
-            setCountdown(remainingTime);
-            setIsRunning(true);
-            return;
-          }
-
           setCountdown(0);
           setIsRunning(false);
           
@@ -56,7 +52,6 @@ export default function OtpGenerationContextProvider({children}) {
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "An error occurred"
           );
-    
         }finally {
           setIsResending(false);
         }

@@ -34,6 +34,11 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
         }, 1000);
     
         return () => clearInterval(timer);
+
+      }else if (isRunning && countDown <= 0) {
+        // Handle case where isRunning is true but countdown is not positive
+        setIsRunning(false);
+        setCountdown(0);
       }
     }, [isRunning, countDown]); 
 
@@ -118,11 +123,7 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
             setCountdown(90);
             setIsRunning(false);
     
-            notifyUser(
-              typeof error.response?.data?.error === "string"
-                ? error.response.data.error
-                : JSON.stringify(error.response?.data?.error) || "Email updated successfully"
-            );
+            notifyUser( "Email updated successfully" );
             setModals({...modals, changeEmailModal: false});
     
             if(otpVerificationTimeoutRef.current){
@@ -138,7 +139,7 @@ export default function ChangeEmailModal({userProfile, fetchUser}) {
               ? error.response.data.error
               : JSON.stringify(error.response?.data?.error) || "Failed to update email. Please try again"
           );
-        }{
+        }finally{
           setIsLoaderActive(false);
         }
     }

@@ -7,6 +7,7 @@ import { OtpGenerationContext } from '../contexts/OtpGenerationContextProvider'
 import apiClient from '../axiosClient/apiClient';
 import '../styles/settings.css'
 import FallbackElement from '../components/FallbackElement'
+import { LoaderContext } from '../contexts/LoaderContextProvider'
 
 const ForgotPasswordModal = lazy(()=> import('../modals/ForgotPasswordModal'));
 const Footer = lazy(()=> import('../components/Footer'));
@@ -25,6 +26,7 @@ export default function Settings() {
   const { notifyUser } = useContext(NotifyContext);
   const {modals, setModals} = useContext(ModalsContext);
   const { handleGenerateOtp } = useContext(OtpGenerationContext);
+  const { setIsLoaderActive } = useContext(LoaderContext);
 
   
   const [userProfile, setUserProfile] = useState({});  // contains profile info & also prop to changeEmail modal
@@ -34,6 +36,7 @@ export default function Settings() {
   // FETCHING USER INFORMATIONS
   async function fetchUser() {
     try {
+      setIsLoaderActive(true);
       const user = localStorage.getItem('proPlannerUsername');
 
       if(!user){
@@ -53,6 +56,8 @@ export default function Settings() {
 
     } catch (error) {
       notifyUser('Something went wrong');
+    }finally{
+      setIsLoaderActive(false);
     }
   }
 

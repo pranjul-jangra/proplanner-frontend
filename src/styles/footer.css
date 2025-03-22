@@ -30,7 +30,9 @@
     }
 
 
-    & input, textarea, select{
+    & > section > form > input, 
+    & > section > form > textarea, 
+    & > section > form > select{
         width: 100%;
         background-color: #ffffff;
         color: #0d0d2b;
@@ -41,19 +43,18 @@
         transition: border 0.3s ease;
         margin-bottom: 12px;
         font-size: 14px;
+        &:focus{
+            border-color: #85c6ff;
+            box-shadow: 0 0 8px #9bd0ff;
+        }
     }
 
-    & textarea{
+    & > section > form > textarea{
         resize: none;
         min-height: 100px;
     }
 
-    & input:focus, textarea:focus, select:focus{
-        border-color: #85c6ff;
-        box-shadow: 0 0 8px #9bd0ff;
-    }
-
-    & button{
+    & > section > form > button{
         color: black;
         border: none;
         border-radius: 8px;
@@ -143,20 +144,35 @@
 /* Dark Theme */
 .footer.dark {
     background-color: #0f0f0f;
-    & h2{
-        color: #d3d3d3;
-        border-bottom: 2px solid #d3d3d3;
-    }
-    & input,textarea, select{
-        border: 2px solid #d3d3d3;
-    }
-    & input:focus, textarea:focus, select:focus{
-        border-color: #d3d3d3;
-        box-shadow: 0 0 8px 2px #a1a1a1;
+
+    & > section > form {
+        & > h2{
+            color: #d3d3d3;
+            border-bottom: 2px solid #d3d3d3;
+        }
+    
+        & > h4{
+            color: #d3d3d3;
+        }
     }
 
-    & > nav > .ContactTags > a{
-        box-shadow: 0 0 5px 1px #1e1e21; 
+    & > section > form > input,
+    & > section > form > textarea, 
+    & > section > form > select{
+        border: 2px solid #d3d3d3;
+        &:focus{
+            border-color: #d3d3d3;
+            box-shadow: 0 0 8px 2px #a1a1a1;
+        }
+    }
+
+    & > section > form > button{
+        background-color: #d3d3d3;
+    }
+
+    & > nav > h2{
+        color: #d3d3d3;
+        border-bottom: 2px solid #d3d3d3;
     }
 
     & > nav > .ContactTags > a:hover{
@@ -169,19 +185,34 @@
 
 /* Pink Theme */
 .footer.pink {
-    & h2{
+    & > section > form {
+        & > h2{
+            color: #ff4463;
+            border-bottom: 2px solid #ff4463;
+        }
+    
+        & > h4{
+            color: #ff4463;
+        }
+    }
+
+    & > section > form > input,
+    & > section > form > textarea, 
+    & > section > form > select{
+        border: 2px solid #ff4463;
+        &:focus{
+            border-color: #ff4463;
+            box-shadow: 0 0 8px 2px #ff7b91;   
+        }
+    }
+
+    & > section > form > button{
+        background-color: #ff4463;
+    }
+
+    & > nav > h2{
         color: #ff4463;
         border-bottom: 2px solid #ff4463;
-    }
-    & h4, &>div div{
-        color: #ff4463;
-    }
-    & input,textarea, select{
-        border: 2px solid #ff4463;
-    }
-    & input:focus, textarea:focus, select:focus{
-        border-color: #ff4463;
-        box-shadow: 0 0 8px 2px #ff7b91;
     }
 
     & > nav > .ContactTags > a:hover{
@@ -193,22 +224,34 @@
 
 /* Light Green Theme */
 .footer.lightgreen {
-    & h2{
+    & > section > form {
+        & > h2{
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+        }
+    
+        & > h4{
+            color: #4CAF50;
+        }
+    }
+
+    & > section > form > input,
+    & > section > form > textarea, 
+    & > section > form > select{
+        border: 2px solid #4CAF50;
+        &:focus{
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px 2px #319d35; 
+        }
+    }
+
+    & > section > form > button{
+        background-color: #4CAF50;
+    }
+
+    & > nav > h2{
         color: #4CAF50;
         border-bottom: 2px solid #4CAF50;
-    }
-    & h4, &>div div{
-        color: #4CAF50;
-    }
-    & input,textarea, select{
-        border: 2px solid #4CAF50;
-    }
-    & input:focus, textarea:focus, select:focus{
-        border-color: #4CAF50;
-        box-shadow: 0 0 8px 2px #319d35;
-    }
-    & button{
-        background-color: #4CAF50;
     }
 
     & > nav > .ContactTags > a:hover{

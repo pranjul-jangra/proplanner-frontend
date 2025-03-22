@@ -73,19 +73,23 @@ export default function Home() {
 
   async function handleAddTask(taskText, countdownPeriod) {
     try {
+      setIsLoaderActive(true);
       await apiClient.post(`/home/add`, { taskText, countdownPeriod, user });
       fetchTasks(); // This function is called even if the home did't re-renders 
       setIsModalOpen(false);
     } catch (error) {
+      setIsLoaderActive(false);
       notifyUser('Failed to add task. Please try again.');
     }
   }
 
   async function handleDeleteTask(taskId){
     try{
+      setIsLoaderActive(true);
       await apiClient.delete(`/home/delete`, { data: { taskId, user } }); //data property is must with delete req
       fetchTasks();
     }catch(error){
+      setIsLoaderActive(false);
       notifyUser('Failed to delete')
     }
   }
@@ -106,18 +110,22 @@ export default function Home() {
     }
   
     try{
+      setIsLoaderActive(true);
       await apiClient.patch(`/home/edit`, {taskId, taskText, countdownPeriod, user});
       fetchTasks();
     }catch(error){
+      setIsLoaderActive(false);
       notifyUser('Failed to update task');
     }
   }
 
   async function handleCompleteTask(taskId){
     try{
+      setIsLoaderActive(true);
       await apiClient.patch(`/home/markascomplete`, {taskId, user})
       fetchTasks();
     }catch(error){
+      setIsLoaderActive(false);
       notifyUser('Failed to mark it as complete')
     }
   }

@@ -36,6 +36,7 @@ export default function Authentication() {
                     setIsLoaderActive(false);
                     return;
                 }
+                notifyUser("Verifying your status. Please wait.");
                 
                 const response = await apiClient.get(`/auth/verify`);
                 if (response.status === 200) {
