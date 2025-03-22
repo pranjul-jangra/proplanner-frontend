@@ -44,7 +44,6 @@ export default function Authentication() {
                 }
             } catch (error) {
                 console.error("Verification failed:", error);
-                // The interceptor will handle token refresh automatically
             } finally {
                 setIsLoaderActive(false);
             }
@@ -66,18 +65,29 @@ export default function Authentication() {
         }
     }
 
+    function generateDeviceId() {
+        return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    }
     
     async function handleSubmit(e, endpoint){
         e.preventDefault();    
-        const { confirmPassword, ...dataToSend } = formData;
         setIsLoaderActive(true);
+
+        let deviceId = localStorage.getItem('proPlannerDeviceId');
+        if (!deviceId) {
+            deviceId = generateDeviceId();
+            localStorage.setItem('proPlannerDeviceId', deviceId);
+        }
+
+        const { confirmPassword, ...dataToSend } = formData;
         
         try { 
-            const response = await apiClient.post(endpoint, dataToSend);
-            const  {accessToken, username} = response.data;
+            const response = await apiClient.post(endpoint, {...dataToSend, deviceId});
+            const  {accessToken, username, deviceId} = response.data;
             
             localStorage.setItem('proPlannerAccessToken', accessToken);
-            localStorage.setItem('proPlannerUsername', username)
+            localStorage.setItem('proPlannerUsername', username);
+            localStorage.setItem('proPlannerDeviceId', deviceId);
             navigate('/home');
             
         } catch (error) {

@@ -43,7 +43,6 @@ export default function Settings() {
         notifyUser('User not found or the session has expired. Please login again.')
         localStorage.removeItem('proPlannerAccessToken');
         localStorage.removeItem('proPlannerUsername');
-
         navigate('/');
       }
 
@@ -53,9 +52,9 @@ export default function Settings() {
       setUserProfile(response.data.userData);
       setDataToEdit(response.data.userData);
 
-
     } catch (error) {
       notifyUser('Something went wrong');
+      navigate('/');
     }finally{
       setIsLoaderActive(false);
     }

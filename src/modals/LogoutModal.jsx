@@ -18,11 +18,14 @@ export default function LogoutModal() {
     async function handleLogout(){
       try{
         setIsLoaderActive(true);
-        const response = await apiClient.post(`/home/settings/logout`);
+        const deviceId = localStorage.getItem('proPlannerDeviceId');
+        const response = await apiClient.post(`/home/settings/logout` , { deviceId });
 
         if(response.status === 200){
           localStorage.removeItem('proPlannerUsername');
           localStorage.removeItem('proPlannerAccessToken');
+          localStorage.removeItem('proPlannerDeviceId');
+          localStorage.removeItem('otpGeneratedTime');
           
           navigate('/');
         }
