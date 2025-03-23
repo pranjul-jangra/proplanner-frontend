@@ -38,7 +38,6 @@ apiClient.interceptors.response.use(
                 return axios(originalRequest); // Retry the failed request with new token
 
             } catch (refreshError) {
-                console.error("Refresh token expired or invalid:", refreshError);
                 localStorage.removeItem('proPlannerAccessToken');
                 localStorage.removeItem('proPlannerUsername');
                 window.location.href = '/';

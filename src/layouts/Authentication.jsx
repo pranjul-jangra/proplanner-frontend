@@ -43,7 +43,7 @@ export default function Authentication() {
                     return navigate("/home");
                 }
             } catch (error) {
-                console.error("Verification failed:", error);
+                notifyUser('Verification failed. Please log in to continue.')
             } finally {
                 setIsLoaderActive(false);
             }
@@ -69,26 +69,29 @@ export default function Authentication() {
         return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     }
     
+
     async function handleSubmit(e, endpoint){
         e.preventDefault();    
         setIsLoaderActive(true);
 
-        let deviceId = localStorage.getItem('proPlannerDeviceId');
-        if (!deviceId) {
-            deviceId = generateDeviceId();
-            localStorage.setItem('proPlannerDeviceId', deviceId);
+        let uniqueId = localStorage.getItem('proPlannerDeviceId');
+        if (!uniqueId) {
+            uniqueId = generateDeviceId();
         }
 
         const { confirmPassword, ...dataToSend } = formData;
         
         try { 
-            const response = await apiClient.post(endpoint, {...dataToSend, deviceId});
-            const  {accessToken, username, deviceId} = response.data;
+            const response = await apiClient.post(endpoint, {...dataToSend, uniqueId});
             
-            localStorage.setItem('proPlannerAccessToken', accessToken);
-            localStorage.setItem('proPlannerUsername', username);
-            localStorage.setItem('proPlannerDeviceId', deviceId);
-            navigate('/home');
+            if(response.status === 200 || response.status === 201){
+                const  {accessToken, username, deviceId} = response.data;
+                
+                localStorage.setItem('proPlannerAccessToken', accessToken);
+                localStorage.setItem('proPlannerUsername', username);
+                localStorage.setItem('proPlannerDeviceId', deviceId);
+                navigate('/home'); 
+            }
             
         } catch (error) {
             notifyUser(
@@ -119,7 +122,7 @@ export default function Authentication() {
                     <h2>Securely Login & Continue Your Journey.</h2>
                     <p>A Seamless Way to Keep Your Thoughts Organized.</p>
 
-                    <form onSubmit={(e) => handleSubmit(e, `/login`)} aria-label='Login field'>
+                    <form aria-label='Login field'>
                         <input id='username' type="text" name='username' placeholder='Username' minLength='5' required value={formData.username} onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value.trim() })} autoFocus aria-required="true" aria-label='Enter your username'/>
                         <div className='password-div'>
                             <input id='password' ref={passwordRef} type={passwordSvg.openingEye ? 'password' : 'text'} name='password' placeholder='Password' minLength='8' required value={formData.password} onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value.trim() })} aria-required="true" aria-label='Enter your password' />
@@ -142,7 +145,7 @@ export default function Authentication() {
                             <span className='forgetpassword' onClick={()=> setModals({...modals, forgotPasswordModal: true})} aria-label='Forgot password button'>Forgot Password</span>
                         </div>
 
-                        <button type="submit" aria-label='Login button'>Login</button>
+                        <button type="submit" onClick={(e) => handleSubmit(e, `/login`)} aria-label='Login button'>Login</button>
                         <div>
                             <div></div>
                             <div onClick={()=>{setActiveSection({login:false, signup:true}); handlePageChange()}} aria-label='Switch to signup page'>Create a new account</div>
@@ -160,7 +163,7 @@ export default function Authentication() {
                     <h2>Join Us & Bring Your Ideas to Life!</h2>
                     <p>A smarter way to organize your notes, ideas, and plans—anytime, anywhere!</p>
 
-                    <form onSubmit={(e) => handleSubmit(e, `/signup`)} aria-label='signup field'>
+                    <form aria-label='signup field'>
                         <input id='username' type="text" name='username' placeholder='Username' minLength='5' required value={formData.username} onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value.trim() })}  autoFocus aria-required="true" aria-label='Enter your username'/>
                         <input id='email' type="email" name='email' placeholder='email' required value={formData.email} onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value.trim() })} aria-required="true" aria-label='Enter your email'/>
                         
@@ -205,7 +208,7 @@ export default function Authentication() {
                         </div>
 
                         <div className='invalidpasswordmatch' ref={invalidMatchRef}>Password should be same.</div>
-                        <button ref={buttonRef} type="submit" aria-label='Signup button'>Signup</button>
+                        <button ref={buttonRef} type="submit" onClick={(e) => handleSubmit(e, `/signup`)} aria-label='Signup button'>Signup</button>
                         <div>
                             <div></div>
                             <div onClick={()=>{setActiveSection({login:true, signup:false}); handlePageChange()}} aria-label='Switch to login page'>Login to existing account</div>

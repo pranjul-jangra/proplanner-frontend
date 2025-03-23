@@ -23,16 +23,13 @@ export default function DeleteAccountModal() {
     async function handleDeleteAccount(e){
       e.preventDefault();
       const username = localStorage.getItem('proPlannerUsername');
-      const deviceId = localStorage.getItem('proPlannerDeviceId');
 
       const password = passwordRef.current.value;
       if(password.length < 8 ) return notifyUser("Your password must be at least 8 characters long");
  
       try{
         setIsLoaderActive(true);
-        const response = await apiClient.delete(`/home/settings/delete-account`, {
-          params: { username, password, deviceId }
-        })
+        const response = await apiClient.post('/home/settings/delete-account', {username, password})
         
         if(response.status === 200){
           setModals({...modals, deleteAccountModal: false});

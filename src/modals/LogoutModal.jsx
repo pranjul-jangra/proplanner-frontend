@@ -18,8 +18,8 @@ export default function LogoutModal() {
     async function handleLogout(){
       try{
         setIsLoaderActive(true);
-        const deviceId = localStorage.getItem('proPlannerDeviceId');
-        const response = await apiClient.post(`/home/settings/logout` , { deviceId });
+        const uniqueId = localStorage.getItem('proPlannerDeviceId');
+        const response = await apiClient.post(`/home/settings/logout` , { uniqueId });
 
         if(response.status === 200){
           localStorage.removeItem('proPlannerUsername');
