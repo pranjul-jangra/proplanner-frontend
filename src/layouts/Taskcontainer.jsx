@@ -17,30 +17,41 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
   const incompleteTask = useMemo(() => tasks.filter((t) => !t.isCompleted), [tasks]);
 
 
-  function getDeadline(createdAt, period) {
-    const createdDate = new Date(createdAt);
-    if (period === "weekly") {
-      createdDate.setDate(createdDate.getDate() + 7);
-    } else if (period === "daily") {
-      createdDate.setDate(createdDate.getDate() + 1);
-    }
-    return createdDate.toLocaleString();
-  }
-
   function getRemainingTime(createdAt, period) {
-    const deadline = new Date(getDeadline(createdAt, period));
-    const now = Date.now();
-    const diffMs = deadline - now;
-    
-    if (diffMs <= 0) return "Time expired!";
-     
-    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));    // % used only for remainder, / used to get the date or time
-    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  //day remainder / hour
-    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));  // hour remainder / minute
-    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);   // minutes remainder / second
-    
-    return `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+    try {
+      const createdDate = new Date(createdAt);
+      let deadline;
+      
+      if (period === "weekly") {
+        deadline = new Date(createdDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+      } else if (period === "daily") {
+        deadline = new Date(createdDate.getTime() + 24 * 60 * 60 * 1000);
+      } else {
+        return "Invalid period";
+      }
+  
+      const now = new Date();
+      const diffMs = deadline.getTime() - now.getTime();
+      
+      if (diffMs <= 0) return "Time expired!";
+       
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+      
+      // Add error checking for NaN values
+      if (isNaN(days) || isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+        return "Invalid time calculation";
+      }
+      
+      return `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+    } catch (error) {
+      console.error("Error calculating remaining time:", error);
+      return "Time calculation error";
+    }
   }
+  
 
 
   useEffect(() => {
@@ -132,7 +143,6 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
                     setIsModalOpen={setIsModalOpen}
                     setTaskId={setTaskId}
                     getDeadline={getDeadline}
-                    getRemainingTime={getRemainingTime}
                     remainingTime={remainingTime[task._id] || "Calculating..."}
                     setIsDetailBoxOpen={setIsDetailBoxOpen}
                     handleCompleteTask={handleCompleteTask}
@@ -148,7 +158,6 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
                   setIsModalOpen={setIsModalOpen}
                   setTaskId={setTaskId}
                   getDeadline={getDeadline}
-                  getRemainingTime={getRemainingTime}
                   remainingTime={remainingTime[task._id] || "Calculating..."}
                   setIsDetailBoxOpen={setIsDetailBoxOpen}
                   handleCompleteTask={handleCompleteTask}

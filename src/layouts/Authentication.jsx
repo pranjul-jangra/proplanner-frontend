@@ -48,7 +48,6 @@ export default function Authentication() {
                 setIsLoaderActive(false);
             }
         }
-
         verify();  
     },[]);
 
