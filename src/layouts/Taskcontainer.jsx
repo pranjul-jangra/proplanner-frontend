@@ -102,7 +102,7 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
             }
 
             {
-              selectedTask.countdownPeriod !== 'noExpiry' && <div aria-label={`Deadline period: ${getDeadline(selectedTask.createdAt, selectedTask.countdownPeriod)}`} aria-live="polite">Deadline:  {getDeadline(selectedTask.createdAt, selectedTask.countdownPeriod)}</div>
+              selectedTask.countdownPeriod !== 'noExpiry' && <div aria-label={`Deadline period: ${getRemainingTime(selectedTask.createdAt, selectedTask.countdownPeriod)}`} aria-live="polite">Deadline:  {getRemainingTime(selectedTask.createdAt, selectedTask.countdownPeriod)}</div>
             }
 
             {
@@ -142,7 +142,7 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
                     return <TaskComponent
                     setIsModalOpen={setIsModalOpen}
                     setTaskId={setTaskId}
-                    getDeadline={getDeadline}
+                    getRemainingTime={getRemainingTime}
                     remainingTime={remainingTime[task._id] || "Calculating..."}
                     setIsDetailBoxOpen={setIsDetailBoxOpen}
                     handleCompleteTask={handleCompleteTask}
@@ -157,7 +157,7 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
                   return <TaskComponent
                   setIsModalOpen={setIsModalOpen}
                   setTaskId={setTaskId}
-                  getDeadline={getDeadline}
+                  getRemainingTime={getRemainingTime}
                   remainingTime={remainingTime[task._id] || "Calculating..."}
                   setIsDetailBoxOpen={setIsDetailBoxOpen}
                   handleCompleteTask={handleCompleteTask}

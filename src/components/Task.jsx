@@ -4,7 +4,7 @@ import { ThemeContext } from '../contexts/ThemeContextProvider'
 import { EditDetailContext } from '../contexts/EditDetailContextProvider';
 import { motion, useInView } from 'motion/react';
 
-export default function Task({task, setTaskId, handleCompleteTask, deleteFn, setIsDetailBoxOpen, getDeadline, remainingTime, setIsModalOpen}) {
+export default function Task({task, setTaskId, handleCompleteTask, deleteFn, setIsDetailBoxOpen, getRemainingTime, remainingTime, setIsModalOpen}) {
     
     const ref = useRef(null);
     const inView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" }); 
@@ -58,7 +58,7 @@ export default function Task({task, setTaskId, handleCompleteTask, deleteFn, set
 
                 {
                     task.countdownPeriod !== 'noExpiry' && (!task.isCompleted && <p>
-                        <strong>Deadline: {getDeadline(task.createdAt, task.countdownPeriod) || ''}</strong>
+                        <strong>Deadline: {getRemainingTime(task.createdAt, task.countdownPeriod) || ''}</strong>
                     </p>)
                 }
                 {
