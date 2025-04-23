@@ -42,19 +42,30 @@
     background-color: aliceblue;
     padding: 5px;
     color: black;
-    box-shadow: -1.5px -1.5px white, 1.5px 1.5px red;
     overflow: auto;
     scrollbar-width: none;
 }
 
-.addtask > form > span{
-    position: absolute;
-    right: 0;
-    bottom: 0;
+/* Shortcut keys indicators */
+.addtask > span{ 
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    opacity: 1;
+
     & > p{
         margin-bottom: 5px;
         background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        padding: 8px 14px;
         color: white;
+        opacity: 0.8;
+        font-size: 0.9rem;
+        box-shadow: 1.2px 1.2px 2px rgba(0, 0, 0, 0.393);
+
+        &:hover{
+            background-color: rgb(63, 63, 63);
+        }
     }
 }
 
@@ -67,12 +78,15 @@
     padding-inline: 10px;
     border-radius: 10px;
     height: 30px;
-    box-shadow: -1.5px -1.5px white, 1.5px 1.5px red;
     border: 0.1px solid black;
 }
-.addtask select:focus{
-    outline: none;
-    border: 0.1px solid black;
+
+.addtask > form > select:focus,
+.addtask > form > textarea:focus,
+.addtask > form > button:nth-of-type(2):focus{
+    outline: 1px solid black;
+    outline-offset: 0.8px;
+    border: 0.1px solid rgb(0, 0, 0);
 }
 
 .addtask div{
@@ -82,7 +96,6 @@
     color: black;
     padding: 6px 10px;
     border: 0.1px solid black;
-    box-shadow: -1.5px -1.5px white, 1.5px 1.5px red;
 }
 
 .addtask button:nth-of-type(1){
@@ -91,9 +104,8 @@
     align-self: end;
     display: inline-block;
     padding: 4px 9.5px;
-    background-color: red;
-    box-shadow: -0.7px -0.7px white, 1px 1px red;
-    border: 1px solid rgb(70, 70, 70);
+    background-color: crimson;
+    border: 1px solid rgb(152, 0, 0);
     margin-bottom: 5px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -101,9 +113,8 @@
     font-weight: bold;
     font-family: sans-serif;
     &:hover{
-        transform: scale(1.1);
-        background-color: rgb(212, 57, 0);
-        filter: contrast(1.3) brightness(1.4);
+        transform: scale(0.95);
+        background-color: rgb(201, 3, 43);
     }
     &:active{
         transform: scale(0.85);
@@ -116,21 +127,23 @@
     text-align: center;
     padding: 7px 0;
     border-radius: 90px;
-    border: 2px solid grey;
+    border: 1px solid grey;
     color: white;
     background-color: black;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 .addtask textarea:placeholder-shown ~ button:nth-of-type(2):active{
-    transform: scale(0.95);
-    color: red;
-    border: 2px solid red;
+    transform: scaleX(0.95);
+    outline: none;
+    color: crimson;
+    border: 1px solid crimson;
 }
 .addtask textarea:not(:placeholder-shown) ~ button:nth-of-type(2):active{
-    transform: scale(0.95);
-    border: 2px solid rgba(34, 158, 34, 0.763);
-    color: rgba(34, 158, 34, 0.763);
+    transform: scaleX(0.95);
+    outline: none;
+    border: 1px solid #059305c3;
+    color: #059305c3;
 }
 
 
@@ -147,14 +160,12 @@
         border: 2px solid black;
         border-radius: 14px;
         padding: 10px;
-        box-shadow: -2.5px -2.5px white, 2.5px 2.5px red;
     }
     
     .addtask select{
         padding-inline: 15px;
         border-radius: 12px;
         height: 54px;
-        box-shadow: -2.5px -2.5px white, 2.5px 2.5px red;
         border: 1px solid black;
     }
     
@@ -164,12 +175,10 @@
         padding: 10px 15px;
         font-size: 1.4rem;
         border: 0.1px solid black;
-        box-shadow: -1.5px -1.5px white, 1.5px 1.5px red;
     }
     
     .addtask button:nth-of-type(1){
         padding: 4px 12px;
-        box-shadow: -0.9px -0.9px white, 1.2px 1.2px red;
         border: 2pxpx solid rgb(70, 70, 70);
         font-size: 1.7rem;
     }

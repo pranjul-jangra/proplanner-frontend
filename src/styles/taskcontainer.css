@@ -1,13 +1,13 @@
 .taskcontainer{
     width: 100%;
     height: 500px;
-    border: 1px solid black;
+    border: 1px solid rgb(182, 182, 182);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     background: rgba(237, 246, 247, 0.434);
     border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px 2px rgba(32, 32, 32, 0.116);
 
     &::-webkit-scrollbar {
         display: none;
@@ -32,17 +32,19 @@
     padding: 15px 10px 15px 10px;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
-    border-bottom: 1.4px solid black;
+    border-bottom: 1.4px solid rgb(180, 180, 180);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     z-index: 3;
     gap: 4px;
     background-color: rgb(220, 238, 255);
+
     &>div:first-of-type{
         margin-right: auto;
         display: flex;
         gap: 10px;
+
         &>button{
             all: unset;
             background-color: aqua;
@@ -52,6 +54,16 @@
             border: 1px solid black;
             font-weight: 600;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.475);
+            transition: all 0.2s ease;
+
+            &:active{
+                transform: scale(0.95);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.475);
+            }
+
+            &:hover{
+                border: 1px solid black;
+            }
         }
         &>button:nth-child(2){
             background-color: greenyellow;
@@ -156,33 +168,38 @@
 
 /* Theme based styling */
 .taskcontainer.dark{
+    border: 1px solid rgb(36, 36, 36);
     background: rgba(30, 30, 30, 0.9);
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.05), 0 0 1px grey;
+    box-shadow: 0 3px 2px rgba(255, 255, 255, 0.05), 0 0 1px grey;
     color: white;
+
     &>div:first-of-type{
-        background-color: rgb(25, 25, 25);
+        background-color: rgb(22, 22, 22);
         border-bottom: 1.4px solid rgb(150, 150, 150);
         color: black;
         &>div:first-of-type>button{
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 2px 2px rgba(74, 74, 74, 0.674);
         }
         &>div:nth-child(2){
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 2px 2px rgba(74, 74, 74, 0.674);
         }
     }
 }
 
 .taskcontainer.pink{
     background-color: rgb(254, 206, 214);
-    box-shadow: 0 6px 12px rgba(255, 20, 147, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 20, 147, 0.2);
+    border: 1px solid rgb(218, 138, 151);
     color: black;
+
     &>div:first-of-type{
-        background-color: rgb(253, 164, 179);
+        background-color: rgb(253, 164, 174);
+        border-bottom: 1.5px solid rgb(255, 103, 128);
         &>div:first-of-type>button{
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1.5px 1px 1px rgb(255, 130, 151);
         }
         &>div:nth-child(2){
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1.5px 1px 1px rgb(255, 130, 151);
         }
     }
 }
@@ -190,6 +207,7 @@
 .taskcontainer.lightgreen{
     background-color: rgba(131, 223, 131, 0.589);
     box-shadow: 0 4px 10px rgba(34, 139, 34, 0.2);
+    border: 1px solid rgb(62, 189, 62);
     color: black;
     &>div:first-of-type{
         background-color: rgb(92, 216, 92);

@@ -95,13 +95,12 @@ export default function AddTasks({ onAdd, onEdit }) {
                         {editDetails.modalMode === 'edit' ? "Update" : "Add"}
                     </button>
 
-                    <span>
-                        <p>Ctrl+S = Save</p>
-                        <p>Ctrl+X = Close</p>
-                    </span>
-
                 </motion.form>
 
+                    <span>
+                        <p onClick={(e)=>{ handleSubmit(e); setEditDetails({ task: '', countdownPeriod: 'daily' }); }}>Ctrl+S = Save</p>
+                        <p onClick={e => { e.preventDefault(); setIsModalOpen(false) }}>Ctrl+X = Close</p>
+                    </span>
             </motion.section>}
         </AnimatePresence>
     );

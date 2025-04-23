@@ -7,7 +7,7 @@ import { motion, useInView } from 'motion/react';
 export default function Task({task, setTaskId, handleCompleteTask, deleteFn, setIsDetailBoxOpen, getRemainingTime, remainingTime, setIsModalOpen}) {
     
     const ref = useRef(null);
-    const inView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" }); 
+    const inView = useInView(ref, { once: false, margin: "-7% 0px -7% 0px" }); 
 
     const {theme} = useContext(ThemeContext);
     const {setEditDetails} = useContext(EditDetailContext);
@@ -28,9 +28,9 @@ export default function Task({task, setTaskId, handleCompleteTask, deleteFn, set
     <motion.article 
     ref={ref}
     key={task._id}
-    initial={{ opacity: 0,  scale: 0.8 }} 
-    animate={inView ? { opacity: 1,  scale: 1 } : { opacity: 0,  scale: 0.8 }} 
-    exit={{ opacity: 0,  scale: 0.9, transition:{ duration: 0.15, ease: 'easeInOut'} }}
+    initial={{ opacity: 0,  scale: 0.95 }} 
+    animate={inView ? { opacity: 1,  scale: 1 } : { opacity: 0,  scale: 0.95 }} 
+    exit={{ opacity: 0,  scale: 0.95, transition:{ duration: 0.15, ease: 'easeInOut'} }}
     transition={{ duration: 0.3, ease: "easeIn" }}
     onClick={()=> {setIsDetailBoxOpen(true); setTaskId(task._id)}} className={`tasks ${theme} ${expiredTask && 'expiredTask'}`}
     aria-labelledby={`task-title-${task._id}`}>
