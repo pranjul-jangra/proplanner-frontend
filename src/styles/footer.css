@@ -74,15 +74,14 @@
 
 .ContactTags{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: end;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
     padding-bottom: 23px;
     height: clamp(100px, 90vh, 120px);
-    gap: 10%;
+    place-items: center;
     
     &>a{
+        all: unset;
         position: relative;
         width: 50px;
         aspect-ratio: 1/1;
@@ -92,6 +91,7 @@
         border-radius: 50%;
         transition: all 0.2s ease-in-out;
         box-shadow: 0 0 5px 1px #05051c;
+        cursor: pointer;
         
         &>svg{
             width: 80%;
@@ -104,26 +104,10 @@
     &>a:nth-child(1)>svg{ width: 65%; aspect-ratio: 1/1;}
     &>a:nth-child(3)>svg{ width: 55%; aspect-ratio: 1/1;}
     &>a:nth-child(4)>svg{ width: 65%; aspect-ratio: 1/1;}
-    
-    &>a:nth-child(2n){
-        transform: translateY(-30px);
-    }
 
-    &>a:nth-child(2n):hover{
-        transform: scale(1.2) translateY(-23.2px);
-        border: 1px solid cyan;
-        box-shadow: 0 0 8px 2px #85c6ffda;
-        background-color: #02032881;
-        outline: 1px solid cyan;
-        outline-offset: -2px;
-    }
-    &>a:nth-child(2n + 1):hover{
-        transform: scale(1.2) translateY(3px);
-        border: 1px solid cyan;
-        box-shadow: 0 0 8px 2px #85c6ffda;
-        background-color: #02032881;
-        outline: 1px solid cyan;
-        outline-offset: -2px;
+    &>a:hover{
+        transform: translateY(-14px);
+        box-shadow: 0 0 8px 2px #85c6ffd2;
     }
 }
 
@@ -147,12 +131,16 @@
 
     & > section > form {
         & > h2{
-            color: #d3d3d3;
+            color: white;
             border-bottom: 2px solid #d3d3d3;
         }
     
         & > h4{
-            color: #d3d3d3;
+            color: white;
+        }
+
+        &>p{
+            color: rgb(218, 218, 218);
         }
     }
 
@@ -176,10 +164,7 @@
     }
 
     & > nav > .ContactTags > a:hover{
-        border: 1px solid #3e3e3e;
         box-shadow: 0 0 8px 2px #a1a1a1;
-        background-color: #0e0e0e;
-        outline: 1px solid #464646;
     }
 }
 
@@ -216,9 +201,7 @@
     }
 
     & > nav > .ContactTags > a:hover{
-        border: 1px solid #ff3f5f;
         box-shadow: 0 0 8px 2px #ff7b91;
-        outline: 1px solid #ff3f5f;
     }
 }
 
@@ -255,9 +238,7 @@
     }
 
     & > nav > .ContactTags > a:hover{
-        border: 1px solid #07600a;
         box-shadow: 0 0 8px 2px #319d35;
-        outline: 1px solid #07600a;
     }
 }
 

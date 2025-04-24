@@ -126,6 +126,10 @@
                 }
             }
 
+            & button:disabled{
+                background-color: red;
+            }
+
             &>div:last-of-type{
                 width: 100%;
                 text-align: center;

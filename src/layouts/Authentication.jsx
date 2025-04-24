@@ -26,30 +26,12 @@ export default function Authentication() {
     const [formData, setFormData] = useState({ username: '', email: '', gender: 'prefer not to say', password: '', confirmPassword: '' });
 
     
-    useEffect(()=>{
-        async function verify() {
-            try {
-                setIsLoaderActive(true);
-                
-                const accessToken = localStorage.getItem('proPlannerAccessToken');
-                if (!accessToken) {
-                    setIsLoaderActive(false);
-                    return;
-                }
-                notifyUser("Verifying your status. Please wait.");
-                
-                const response = await apiClient.get(`/auth/verify`);
-                if (response.status === 200) {
-                    return navigate("/home");
-                }
-            } catch (error) {
-                notifyUser('Verification failed. Please log in to continue.')
-            } finally {
-                setIsLoaderActive(false);
-            }
-        }
-        verify();  
-    },[]);
+    useEffect(() => {
+        const accessToken = localStorage.getItem('proPlannerAccessToken');
+        
+        if (accessToken) { navigate("/home") }
+    }, []);
+    
 
 
     function handlePasswordMatching(){
@@ -97,7 +79,7 @@ export default function Authentication() {
                 typeof error.response?.data?.error === "string"
                   ? error.response.data.error
                   : JSON.stringify(error.response?.data?.error) || "An error occurred"
-              );
+            );
         }
         setIsLoaderActive(false);
     };

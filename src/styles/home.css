@@ -91,7 +91,8 @@
     text-shadow: 1px 1px black, -1px -1px black;
 }
 .homepage.dark{
-    background: linear-gradient(135deg, #121212, #121212e3);
+    background: linear-gradient(135deg, #121212, #121212eb);
+    /* background: linear-gradient(135deg, #121212, #121212e3); */
     color: white;
 }
 .homepage.pink{
