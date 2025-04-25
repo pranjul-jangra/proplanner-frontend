@@ -99,6 +99,11 @@
             fill: white;
             transition: all 0.3s ease-in-out;
         }
+
+        &:focus-visible{
+            outline: 1.2px solid white;
+            outline-offset: 1.3px;
+        }
     }
 
     &>a:nth-child(1)>svg{ width: 65%; aspect-ratio: 1/1;}

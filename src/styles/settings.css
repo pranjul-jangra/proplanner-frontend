@@ -149,7 +149,7 @@ h4 {
 
 /* Dark Theme */
 .settingspage.dark {
-    background: linear-gradient(135deg, #121212, #121212e3);
+    background: linear-gradient(135deg, #121212, #000000eb);
     color: #e0e0e0;
     & h2{
         color: white;
