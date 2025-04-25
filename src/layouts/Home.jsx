@@ -145,13 +145,13 @@ export default function Home() {
               <h2 className="visually-hidden">Tasks</h2>
               <AddTasks onAdd={handleAddTask} onEdit={handleUpdateTask} />
               <div>
-                <Taskcontainer setIsModalOpen={setIsModalOpen} shouldCompleteButtonDisplay={true} handleCompleteTask={handleCompleteTask} deleteFn={handleDeleteTask} tasks={dailyTasks} containerName="📋 Daily Tasks" />
-                <Taskcontainer setIsModalOpen={setIsModalOpen} shouldCompleteButtonDisplay={true} handleCompleteTask={handleCompleteTask} deleteFn={handleDeleteTask} tasks={weeklyTasks} containerName="📆 Weekly Tasks" />
+                <Taskcontainer setIsModalOpen={setIsModalOpen} handleCompleteTask={handleCompleteTask} deleteFn={handleDeleteTask} tasks={dailyTasks} containerName="📋 Daily Tasks" />
+                <Taskcontainer setIsModalOpen={setIsModalOpen} handleCompleteTask={handleCompleteTask} deleteFn={handleDeleteTask} tasks={weeklyTasks} containerName="📆 Weekly Tasks" />
               </div>
             </div>
             <div>
               <h2 className="visually-hidden">Notes</h2>
-              <Taskcontainer setIsModalOpen={setIsModalOpen} shouldCompleteButtonDisplay={false} deleteFn={handleDeleteTask} tasks={notes} containerName='🗒️ Notes' />
+              <Taskcontainer setIsModalOpen={setIsModalOpen} shouldHideCompleteButton={true} deleteFn={handleDeleteTask} tasks={notes} containerName='🗒️ Notes' />
             </div>
           </div>
         </Suspense>

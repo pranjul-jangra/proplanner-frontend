@@ -16,13 +16,6 @@
     scrollbar-width: none;
 }
 
-.visible{
-    display: block;
-}
-.hide{
-    display: none;
-}
-
 .taskcontainer>div:first-of-type{
     position: sticky;
     top: 0;

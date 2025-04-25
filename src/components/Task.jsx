@@ -39,8 +39,7 @@ export default function Task({task, setTaskId, handleCompleteTask, deleteFn, set
             <h4 id={`task-title-${task._id}`}>{task.task.length >120 ? task.task.slice(0, 120) + '...' : task.task}</h4>
             <div>
                 <p>
-                    <strong>Created at: 
-                        <time dateTime={new Date(task.createdAt).toISOString()}>
+                    <strong>Created at: <time dateTime={new Date(task.createdAt).toISOString()}>
                             {new Date(task.createdAt).toLocaleString() || ''}
                         </time>
                     </strong>
@@ -48,8 +47,7 @@ export default function Task({task, setTaskId, handleCompleteTask, deleteFn, set
 
                 {
                     task.updatedAt && <p>
-                        <strong>Updated at: 
-                            <time dateTime={new Date(task.updatedAt).toISOString()}>
+                        <strong>Updated at: <time dateTime={new Date(task.updatedAt).toISOString()}>
                             {new Date(task.updatedAt).toLocaleString() || ''}
                             </time>
                         </strong>
@@ -58,7 +56,7 @@ export default function Task({task, setTaskId, handleCompleteTask, deleteFn, set
 
                 {
                     task.countdownPeriod !== 'noExpiry' && (!task.isCompleted && <p>
-                        <strong>Deadline: {getRemainingTime(task.createdAt, task.countdownPeriod) || ''}</strong>
+                        <strong>Deadline: {task?.countdownPeriod === 'daily' ? `1 day (${24 * 1} hours)` : `7 days (${24 * 7} hours)`}</strong>
                     </p>)
                 }
                 {

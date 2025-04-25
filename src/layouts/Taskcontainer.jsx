@@ -6,7 +6,8 @@ import '../styles/taskcontainer.css'
 
 const TaskComponent = lazy(()=> import('../components/Task'));
 
-export default function Taskcontainer({containerName, tasks,handleCompleteTask, deleteFn, shouldCompleteButtonDisplay, setIsModalOpen}) {
+export default function Taskcontainer({containerName, tasks,handleCompleteTask, deleteFn, shouldHideCompleteButton = false, setIsModalOpen}) {
+
   const {theme} = useContext(ThemeContext)
   const [isDetailBoxOpen, setIsDetailBoxOpen] = useState(false);
   const [taskId, setTaskId] = useState(null);  //get it from child to know which task is clicked
@@ -74,6 +75,7 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
 
   return (
     <>
+    {/* Detail popup box --------------------------------------- */}
       <AnimatePresence>
         {isDetailBoxOpen && <motion.section 
         initial={{opacity: 0}}
@@ -102,7 +104,7 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
             }
 
             {
-              selectedTask.countdownPeriod !== 'noExpiry' && <div aria-label={`Deadline period: ${getRemainingTime(selectedTask.createdAt, selectedTask.countdownPeriod)}`} aria-live="polite">Deadline:  {getRemainingTime(selectedTask.createdAt, selectedTask.countdownPeriod)}</div>
+              selectedTask.countdownPeriod !== 'noExpiry' && <div aria-label={selectedTask?.countdownPeriod === 'daily' ? `1 day (${24 * 1} hours)` : `7 days (${24 * 7} hours)`} aria-live="polite">Deadline:  {selectedTask?.countdownPeriod === 'daily' ? `1 day (${24 * 1} hours)` : `7 days (${24 * 7} hours)`}</div>
             }
 
             {
@@ -115,14 +117,14 @@ export default function Taskcontainer({containerName, tasks,handleCompleteTask, 
       </AnimatePresence>
 
 
-
+      {/* Tasks container ------------------------------------- */}
       <section className={`taskcontainer ${theme}`}>
 
         <div>
 
           <div>
             <button type='button' onClick={()=> setActiveTab({default: true, completedTask: false})} aria-label={`View incomplete tasks in ${containerName}`}> {containerName} </button>
-            <button type='button' onClick={()=> setActiveTab({default: false, completedTask: true})} className={shouldCompleteButtonDisplay ? 'visible':'hide'} aria-label={`View completed tasks`}>✅ Completed Tasks</button>
+            {!shouldHideCompleteButton && <button type='button' onClick={()=> setActiveTab({default: false, completedTask: true})} aria-label={`View completed tasks`}>✅ Completed Tasks</button>}
           </div>
 
           {
