@@ -67,7 +67,7 @@
         justify-content: center;
         align-items: center;
         &:active{
-            transform: scale(0.95);
+            transform: scale(0.985);
         }
     }
 }
@@ -115,18 +115,6 @@
         box-shadow: 0 0 8px 2px #85c6ffd2;
     }
 }
-
-.contact-links{
-    width: 60%;
-    & > h2{
-        color: #85c6ff;
-        border-bottom: 2px solid #85c6ff;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
-    }
-}
-
-
 
 /* THEME BASED STYLING */
 
@@ -253,18 +241,10 @@
     .footer > section > form {
         width: 78%;
     }
-
-    .contact-links{
-        width: 78%;
-    }
 }
 
 @media (max-width: 820px){
     .footer > section > form {
-        width: 100%;
-    }
-
-    .contact-links{
         width: 100%;
     }
 }
@@ -298,10 +278,6 @@
         & > button{
             padding: 20px 20px;
         }
-    }
-
-    .contact-links{
-        width: 80%;
     }
     
     .ContactTags{
